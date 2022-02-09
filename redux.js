@@ -1,10 +1,18 @@
 const redux = require('redux');
 
 //if state is undefined, state will be equals to a obj with counter: 0
-const counterReducer = (state = {counter: 0}, action) => {
-    return {
-        counter: state.counter + 1
-    };
+const counterReducer = (state = { counter: 0 }, action) => {
+    if (action.type === 'increment') {
+        return {
+            counter: state.counter + 1
+        };
+    }
+    if (action.type === 'decrement') {
+        return {
+            counter: state.counter + 1
+        };
+    }
+    return state
 };
 
 const store = redux.createStore(counterReducer);
@@ -20,4 +28,5 @@ store.subscribe(counterSubscriber);
 
 //dispatch is a function that send to redux a action.
 //they are a object that has a key called type
-store.dispatch({type: 'increment'});
+store.dispatch({ type: 'increment' });
+store.dispatch({ type: 'decrement' });
